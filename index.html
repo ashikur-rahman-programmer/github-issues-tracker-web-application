@@ -106,7 +106,35 @@
     </section>
 
     <!-- main page -->
-    <main id="main-page" class="hidden container mx-auto"></main>
+    <main id="main-page" class="hidden container mx-auto">
+      <!-- header section -->
+      <header
+        class="navbar bg-base-100 shadow-sm flex flex-wrap justify-between items-center gap-3"
+      >
+        <!-- logo -->
+        <div class="flex items-center gap-1">
+          <figure class="w-[36px]">
+            <img src="./assets/github-logo.png" alt="" />
+          </figure>
+          <a class="text-xl">GitHub Issues Tracker</a>
+        </div>
+        <!-- search -->
+        <div class="flex flex-wrap gap-3 items-center">
+          <label class="outline-none input flex items-center gap-1 w-[250px]">
+            <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+            <input type="text" class="grow" placeholder="Search issues..." />
+          </label>
+          <div>
+            <button class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i> New Issue
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- all btn and cards section here -->
+      <section></section>
+    </main>
 
     <!-- js connected -->
     <script src="./script/script.js"></script>
