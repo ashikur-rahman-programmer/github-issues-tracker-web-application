@@ -42,6 +42,64 @@
     <title>Github Tracker Web Application</title>
   </head>
   <body>
+    <main class="container mx-auto">
+      <!-- login page -->
+      <section
+        class="w-11/12 md:w-5/12 p-6 mx-auto my-16 rounded-xl shadow-md space-y-6"
+      >
+        <!-- logo + header -->
+        <div class="text-center space-y-6">
+          <figure class="flex justify-center">
+            <img src="./assets/github-logo.png" alt="" />
+          </figure>
+          <div class="space-y-2">
+            <h1 class="text-2xl font-bold">GitHub Issues Tracker</h1>
+            <p class="text-gray-600">Sign in to manage your issues</p>
+          </div>
+        </div>
+
+        <!-- login form -->
+        <fieldset class="fieldset rounded-box p-4 w-full mx-auto space-y-4">
+          <div class="space-y-2">
+            <label class="label text-lg font-bold">Username</label>
+            <input
+              type="text"
+              class="input w-full text-lg py-6 outline-none font-semibold"
+              placeholder="Enter Username"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label class="label text-lg font-bold">Password</label>
+            <input
+              type="password"
+              class="input w-full text-lg py-6 outline-none font-semibold"
+              placeholder="Enter Password"
+            />
+          </div>
+
+          <button class="btn btn-primary py-6 rounded-xl text-lg mt-4">
+            Sing In
+          </button>
+        </fieldset>
+
+        <!-- or setup -->
+        <div class="flex items-center my-4">
+          <div class="flex-grow border-t border-gray-300"></div>
+          <span class="px-3 text-gray-500 font-medium">OR</span>
+          <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <div class="text-center space-y-2">
+          <p class="text-lg text-gray-800 font-medium">Demo Credentials:</p>
+          <div class="py-6 w-full bg-gray-100 rounded-lg">
+            <p>Username: admin</p>
+            <p>Password: admin123</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <!-- js connected -->
     <script src="./script/script.js"></script>
   </body>
