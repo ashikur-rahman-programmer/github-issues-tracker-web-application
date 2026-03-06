@@ -42,9 +42,9 @@
     <title>Github Tracker Web Application</title>
   </head>
   <body>
-    <main class="container mx-auto">
-      <!-- login page -->
-      <section
+    <!-- login page -->
+    <section id="login-page" class="container mx-auto">
+      <div
         class="w-11/12 md:w-5/12 p-6 mx-auto my-16 rounded-xl shadow-md space-y-6"
       >
         <!-- logo + header -->
@@ -63,6 +63,7 @@
           <div class="space-y-2">
             <label class="label text-lg font-bold">Username</label>
             <input
+              id="user-input"
               type="text"
               class="input w-full text-lg py-6 outline-none font-semibold"
               placeholder="Enter Username"
@@ -72,13 +73,17 @@
           <div class="space-y-2">
             <label class="label text-lg font-bold">Password</label>
             <input
+              id="password-input"
               type="password"
               class="input w-full text-lg py-6 outline-none font-semibold"
               placeholder="Enter Password"
             />
           </div>
 
-          <button class="btn btn-primary py-6 rounded-xl text-lg mt-4">
+          <button
+            id="singin-btn"
+            class="btn btn-primary py-6 rounded-xl text-lg mt-4"
+          >
             Sing In
           </button>
         </fieldset>
@@ -97,8 +102,11 @@
             <p>Password: admin123</p>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+
+    <!-- main page -->
+    <main id="main-page" class="hidden container mx-auto"></main>
 
     <!-- js connected -->
     <script src="./script/script.js"></script>
