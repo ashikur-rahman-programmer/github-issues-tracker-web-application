@@ -105,8 +105,8 @@
       </div>
     </section>
 
-    <!-- main page -->
-    <main id="main-page" class="hidden container mx-auto">
+    <!-- main page -> hidden class add korte hbe pore -->
+    <main id="main-page" class="container mx-auto space-y-[60px]">
       <!-- header section -->
       <header
         class="navbar bg-base-100 shadow-sm flex flex-wrap justify-between items-center gap-3"
@@ -133,7 +133,54 @@
       </header>
 
       <!-- all btn and cards section here -->
-      <section></section>
+      <section class="hidden w-11/12 mx-auto space-y-6 mb-52">
+        <!-- 3 buttons all open closed -->
+        <div class="p-4 shadow-sm flex gap-3 items-center mb-4">
+          <button
+            class="btn btn-xs px-12 sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+          >
+            All
+          </button>
+          <button
+            class="btn btn-xs px-8 sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
+          >
+            Open
+          </button>
+          <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
+            Closed
+          </button>
+        </div>
+
+        <!-- all issues and cards -->
+        <div class="">
+          <!-- issues header -->
+          <div
+            class="flex justify-between gap-6 items-center flex-wrap p-6 shadow-sm"
+          >
+            <div class="flex items-center gap-4">
+              <figure class="p-2 rounded-full bg-gray-200">
+                <img src="./assets/Aperture.png" alt="" />
+              </figure>
+              <div>
+                <h2 class="text-2xl font-bold">50 Issues</h2>
+                <p class="text-xl text-gray-500">
+                  Track and manage your project issues
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-2">
+                <img src="./assets/Ellipse 2.png" alt="" />
+                <p class="text-xl">Open</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <img src="./assets/Ellipse 1.png" alt="" />
+                <p class="text-xl">Closed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- js connected -->
