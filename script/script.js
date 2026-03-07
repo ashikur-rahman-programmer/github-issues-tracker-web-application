@@ -8,6 +8,7 @@ const singInBtn = document.getElementById("singin-btn");
 const btnsContainer = document.getElementById("btns-container");
 const allBtn = document.getElementById("all-btn");
 const allCardsContainer = document.getElementById("all-cards-show");
+const spinnerLoad = document.getElementById("spinner-load");
 
 // login btn here
 singInBtn.addEventListener("click", () => {
@@ -29,6 +30,15 @@ singInBtn.addEventListener("click", () => {
 // allBtn.addEventListener("click", () => {
 //   loadBtn();
 // });
+
+//spinner loading
+const showLoadingSpinner = () => {
+  spinnerLoad.classList.remove("hidden");
+  allCardsContainer.innerText = "";
+};
+const removeLoadingSpinner = () => {
+  spinnerLoad.classList.add("hidden");
+};
 
 // labels arr output
 const labelFunc = (arr) => {
@@ -91,14 +101,15 @@ const dateUpdate = (date) => {
 
 //btns  dynamic loaded here
 const loadBtn = async () => {
+  showLoadingSpinner();
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   const res = await fetch(url);
   const data = await res.json();
   displayBtn(data.data);
+  removeLoadingSpinner();
 };
 //display
 const displayBtn = (cards) => {
-  // const allCardsContainer = document.getElementById("all-cards-show");
   allCardsContainer.innerHTML = "";
   cards.forEach((card) => {
     // statusIcon
