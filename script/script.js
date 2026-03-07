@@ -68,8 +68,17 @@ const displayBtn = (cards) => {
       }
     };
 
+    // border top condition
+    const borderTopCon = (bor) => {
+      if (bor === "open") {
+        return "border-t-4 border-t-green-500";
+      } else if (bor === "closed") {
+        return "border-t-4 border-t-purple-500";
+      }
+    };
+
     const div = document.createElement("div");
-    div.className = "space-y-5 p-4 shadow-md rounded-lg";
+    div.className = `space-y-5 p-4 shadow-md rounded-lg ${borderTopCon(card.status)}`;
     div.innerHTML = `
     
         <div class="space-y-5 pb-4 border-b-2 border-b-gray-200">
