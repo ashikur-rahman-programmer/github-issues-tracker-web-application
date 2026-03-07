@@ -14,9 +14,6 @@ const issuesCount = document.getElementById("issues-count");
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 
-// store data
-let allCards = [];
-
 // login btn here
 singInBtn.addEventListener("click", () => {
   const userInputValue = userInput.value;
@@ -36,17 +33,27 @@ singInBtn.addEventListener("click", () => {
 //search automatic show when find specific card
 searchInput.addEventListener("input", async () => {
   const searchValue = searchInput.value.toLowerCase();
-
   showLoadingSpinner();
 
-  const res = await fetch(
-    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
-  );
-  const data = await res.json();
-  displayCard(data.data);
+  if (searchValue.trim() === "") {
+    // search empty
+    const res = await fetch(
+      "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+    );
+    const data = await res.json();
+    displayCard(data.data);
+  } else {
+    // search with query
+    const res = await fetch(
+      `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+    );
+    const data = await res.json();
+    displayCard(data.data);
+  }
 
   removeLoadingSpinner();
 });
+//
 
 // issues count fnc
 const updateIssuesCardsCount = (cardsArr) => {
@@ -149,11 +156,11 @@ const labelFunc = (arr) => {
 // priority bg
 const priorityFunc = (priority) => {
   if (priority === "high") {
-    return "text-[#EF4444] bg-red-100";
+    return "text-red-700 bg-red-200";
   } else if (priority === "medium") {
-    return "text-[#F59E0B] bg-yellow-100";
+    return "text-yellow-700 bg-yellow-200";
   } else if (priority === "low") {
-    return "text-[#9CA3AF] bg-gray-100";
+    return "text-gray-700 bg-gray-200";
   }
 };
 
@@ -198,7 +205,7 @@ const displayModal = (card) => {
                   <div class="flex items-center gap-2">
                     <span  class="badge ${card.status === "open" ? "badge-success" : "badge-warning"} rounded-2xl">${card.status.toUpperCase()}</span>
                     <p class="text-gray-500 flex items-center gap-2">
-                      <img src="./assets/Ellipse 5.png" alt="" />Opened by ${card.assignee}
+                      <img src="./assets/Ellipse 5.png" alt="" />Opened by ${card.assignee || "Unassigned"}
                     </p>
                     <p class="text-gray-500 flex items-center gap-2">
                       <img src="./assets/Ellipse 5.png" alt="" />${dateUpdate(card.createdAt)}
@@ -215,7 +222,7 @@ const displayModal = (card) => {
                 <div class="grid grid-cols-2 px-4 py-2 bg-gray-100 rounded-xl">
                   <div class="space-y-2">
                     <p class="text-lg text-gray-500">Assignee:</p>
-                    <p class="font-semibold">${card.assignee}</p>
+                    <p class="font-semibold">${card.assignee || "Unassigned"}</p>
                   </div>
                   <div class="space-y-2">
                     <p class="text-lg text-gray-500">Priority:</p>
@@ -237,7 +244,6 @@ const loadCard = async () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   const res = await fetch(url);
   const data = await res.json();
-  allCards = data.data;
   displayCard(data.data);
   removeLoadingSpinner();
 };

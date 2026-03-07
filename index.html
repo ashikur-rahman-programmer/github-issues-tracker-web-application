@@ -196,52 +196,10 @@
           <!-- all cards section here -->
 
           <!-- modal -->
-          <!-- Open the modal using ID.showModal() method -->
-          <!-- <button class="btn" onclick="my_modal_5.showModal()">
-            open modal
-          </button> -->
           <dialog id="issues_modal" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
               <!--  -->
               <div id="modal-card" class="space-y-4"></div>
-
-              <!--  <div class="space-y-2">
-                  <h2 class="text-xl font-bold">Lorem ipsum dolor sit amet.</h2>
-                  <div class="flex items-center gap-2">
-                    <span class="badge badge-success rounded-2xl">Opened</span>
-                    <p class="text-gray-500 flex items-center gap-2">
-                      <img src="./assets/Ellipse 5.png" alt="" />ashik Mahmud
-                    </p>
-                    <p class="text-gray-500 flex items-center gap-2">
-                      <img src="./assets/Ellipse 5.png" alt="" />1/2/2025
-                    </p>
-                  </div>
-                </div>
-                <div class="flex text-[12px] flex-wrap items-center gap-2">
-                  <p>BUG</p>
-                  <p>HELP</p>
-                </div>
-                <p class="text-gray-500 line-clamp-2">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Doloremque aliquid non, commodi impedit dolorum neque.
-                </p>
-
-                <div class="grid grid-cols-2 px-4 py-2 bg-gray-100 rounded-xl">
-                  <div class="">
-                    <p class="text-lg text-gray-500">Assignee:</p>
-                    <p class="font-semibold">Ashik</p>
-                  </div>
-                  <div class="">
-                    <p class="text-lg text-gray-500">Priority:</p>
-                    <span
-                      id="priority-unq"
-                      class="rounded-4xl ${priorityFunc(card.priority)} bg-gray-100"
-                    >
-                      HIGH
-                    </span>
-                  </div>
-                </div>
-              -->
               <!--  -->
               <div class="modal-action">
                 <form method="dialog">
@@ -261,7 +219,10 @@
           </div>
 
           <!-- card loaded dynamic from api  -->
-          <div id="all-cards-show" class="grid md:grid-cols-4 gap-5 p-6">
+          <div
+            id="all-cards-show"
+            class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 p-6"
+          >
             <!-- card loaded dynamic from api  -->
           </div>
         </div>
