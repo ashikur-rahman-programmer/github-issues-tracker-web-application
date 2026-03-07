@@ -43,7 +43,7 @@
   </head>
   <body>
     <!-- login page -->
-    <section id="login-page" class="container mx-auto">
+    <section id="login-page" class="hidden container mx-auto">
       <div
         class="w-11/12 md:w-5/12 p-6 mx-auto my-16 rounded-xl shadow-md space-y-6"
       >
@@ -106,7 +106,7 @@
     </section>
 
     <!-- main page -> hidden class add korte hbe pore -->
-    <main id="main-page" class="container hidden mx-auto space-y-[60px]">
+    <main id="main-page" class="container mx-auto space-y-[60px]">
       <!-- header section -->
       <header
         class="navbar bg-base-100 shadow-sm flex flex-wrap justify-between items-center gap-3"
@@ -135,8 +135,12 @@
       <!-- all btn and cards section here -->
       <section class="w-11/12 mx-auto space-y-6 mb-52">
         <!-- 3 buttons all open closed -->
-        <div class="p-4 shadow-sm flex gap-3 items-center mb-4">
+        <div
+          id="btns-container"
+          class="p-4 shadow-sm flex gap-3 items-center mb-4"
+        >
           <button
+            id="all-btn"
             class="btn btn-xs px-12 sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl"
           >
             All
@@ -152,10 +156,10 @@
         </div>
 
         <!-- all issues and cards -->
-        <div class="">
+        <div class="shadow-md">
           <!-- issues header -->
           <div
-            class="flex justify-between gap-6 items-center flex-wrap p-6 shadow-sm"
+            class="flex justify-between gap-6 items-center flex-wrap p-4 shadow-sm"
           >
             <div class="flex items-center gap-4">
               <figure class="p-2 rounded-full bg-gray-200">
@@ -179,6 +183,12 @@
               </div>
             </div>
           </div>
+
+          <!-- all cards section here -->
+          <!-- card loaded dynamic from api  -->
+          <div id="all-cards-show" class="grid md:grid-cols-4 gap-5 p-6">
+            <!-- card loaded dynamic from api  -->
+          </div>
         </div>
       </section>
     </main>
@@ -187,3 +197,5 @@
     <script src="./script/script.js"></script>
   </body>
 </html>
+
+<!-- original -->
