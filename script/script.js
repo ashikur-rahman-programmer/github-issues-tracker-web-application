@@ -33,32 +33,19 @@ singInBtn.addEventListener("click", () => {
   }
 });
 
-// search btn click specific cards
-// searchBtn.addEventListener("click", () => {
-//   const searchValue = searchInput.value.toLowerCase();
-
-//   const filteredCards = allCards.filter(
-//     (card) =>
-//       card.title.toLowerCase().includes(searchValue) ||
-//       card.author.toLowerCase().includes(searchValue) ||
-//       card.id.toString().includes(searchValue),
-//   );
-
-//   displayCard(filteredCards);
-// });
-
 //search automatic show when find specific card
-searchInput.addEventListener("input", () => {
+searchInput.addEventListener("input", async () => {
   const searchValue = searchInput.value.toLowerCase();
 
-  const filteredCards = allCards.filter(
-    (card) =>
-      card.title.toLowerCase().includes(searchValue) ||
-      card.author.toLowerCase().includes(searchValue) ||
-      card.id.toString().includes(searchValue),
-  );
+  showLoadingSpinner();
 
-  displayCard(filteredCards);
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+  );
+  const data = await res.json();
+  displayCard(data.data);
+
+  removeLoadingSpinner();
 });
 
 // issues count fnc
