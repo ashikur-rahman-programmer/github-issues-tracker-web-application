@@ -10,9 +10,10 @@ const spinnerLoad = document.getElementById("spinner-load");
 const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
+const issuesCount = document.getElementById("issues-count");
 
 // sob cards er data thakbe
-let allCards = [];
+// let allCards = [];
 
 // login btn here
 singInBtn.addEventListener("click", () => {
@@ -30,21 +31,48 @@ singInBtn.addEventListener("click", () => {
   }
 });
 
+// issues count fnc
+
+const updateIssuesCardsCount = (cardsArr) => {
+  issuesCount.textContent = `${cardsArr.length} Issues`;
+};
+
 // all btn dynamic loaded here
-allBtn.addEventListener("click", () => {
-  displayCard(allCards);
+allBtn.addEventListener("click", async () => {
+  showLoadingSpinner();
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const data = await res.json();
+  displayCard(data.data);
+
+  removeLoadingSpinner();
 });
 
 //open btn dynamic loaded here
-openBtn.addEventListener("click", () => {
-  const openCard = allCards.filter((card) => card.status === "open");
-  displayCard(openCard);
+openBtn.addEventListener("click", async () => {
+  showLoadingSpinner();
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const data = await res.json();
+  const openCards = data.data.filter((card) => card.status === "open");
+  displayCard(openCards);
+
+  removeLoadingSpinner();
 });
 
 //closed btn dynamic loaded here
-closedBtn.addEventListener("click", () => {
-  const closedCard = allCards.filter((card) => card.status === "closed");
-  displayCard(closedCard);
+closedBtn.addEventListener("click", async () => {
+  showLoadingSpinner();
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const data = await res.json();
+  const closedCards = data.data.filter((card) => card.status === "closed");
+  displayCard(closedCards);
+
+  removeLoadingSpinner();
 });
 
 //spinner loading
@@ -121,12 +149,15 @@ const loadCard = async () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   const res = await fetch(url);
   const data = await res.json();
-  allCards = data.data;
+  // allCards = data.data;
   displayCard(data.data);
   removeLoadingSpinner();
 };
 //display cards
 const displayCard = (cards) => {
+  // update Issues Cards Count
+  updateIssuesCardsCount(cards);
+
   allCardsContainer.innerHTML = "";
   cards.forEach((card) => {
     // statusIcon
