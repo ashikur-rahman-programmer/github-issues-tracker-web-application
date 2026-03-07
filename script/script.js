@@ -12,9 +12,6 @@ const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
 const issuesCount = document.getElementById("issues-count");
 
-// sob cards er data thakbe
-// let allCards = [];
-
 // login btn here
 singInBtn.addEventListener("click", () => {
   const userInputValue = userInput.value;
@@ -32,13 +29,13 @@ singInBtn.addEventListener("click", () => {
 });
 
 // issues count fnc
-
 const updateIssuesCardsCount = (cardsArr) => {
   issuesCount.textContent = `${cardsArr.length} Issues`;
 };
 
 // all btn dynamic loaded here
 allBtn.addEventListener("click", async () => {
+  setActiveBtn(allBtn);
   showLoadingSpinner();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -51,6 +48,7 @@ allBtn.addEventListener("click", async () => {
 
 //open btn dynamic loaded here
 openBtn.addEventListener("click", async () => {
+  setActiveBtn(openBtn);
   showLoadingSpinner();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -64,6 +62,7 @@ openBtn.addEventListener("click", async () => {
 
 //closed btn dynamic loaded here
 closedBtn.addEventListener("click", async () => {
+  setActiveBtn(closedBtn);
   showLoadingSpinner();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
@@ -74,6 +73,15 @@ closedBtn.addEventListener("click", async () => {
 
   removeLoadingSpinner();
 });
+
+// active btn when click
+
+const setActiveBtn = (activeBtn) => {
+  const allActiveBtns = document.querySelectorAll(".active-common-btn");
+  allActiveBtns.forEach((btn) => btn.classList.remove("btn-primary"));
+
+  activeBtn.classList.add("btn-primary");
+};
 
 //spinner loading
 const showLoadingSpinner = () => {
@@ -149,7 +157,6 @@ const loadCard = async () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   const res = await fetch(url);
   const data = await res.json();
-  // allCards = data.data;
   displayCard(data.data);
   removeLoadingSpinner();
 };
