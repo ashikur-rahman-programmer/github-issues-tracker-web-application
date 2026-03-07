@@ -11,6 +11,11 @@ const allBtn = document.getElementById("all-btn");
 const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
 const issuesCount = document.getElementById("issues-count");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+
+// store data
+let allCards = [];
 
 // login btn here
 singInBtn.addEventListener("click", () => {
@@ -26,6 +31,34 @@ singInBtn.addEventListener("click", () => {
     mainPage.classList.remove("hidden");
     loginPage.classList.add("hidden");
   }
+});
+
+// search btn click specific cards
+// searchBtn.addEventListener("click", () => {
+//   const searchValue = searchInput.value.toLowerCase();
+
+//   const filteredCards = allCards.filter(
+//     (card) =>
+//       card.title.toLowerCase().includes(searchValue) ||
+//       card.author.toLowerCase().includes(searchValue) ||
+//       card.id.toString().includes(searchValue),
+//   );
+
+//   displayCard(filteredCards);
+// });
+
+//search automatic show when find specific card
+searchInput.addEventListener("input", () => {
+  const searchValue = searchInput.value.toLowerCase();
+
+  const filteredCards = allCards.filter(
+    (card) =>
+      card.title.toLowerCase().includes(searchValue) ||
+      card.author.toLowerCase().includes(searchValue) ||
+      card.id.toString().includes(searchValue),
+  );
+
+  displayCard(filteredCards);
 });
 
 // issues count fnc
@@ -157,6 +190,7 @@ const loadCard = async () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   const res = await fetch(url);
   const data = await res.json();
+  allCards = data.data;
   displayCard(data.data);
   removeLoadingSpinner();
 };
