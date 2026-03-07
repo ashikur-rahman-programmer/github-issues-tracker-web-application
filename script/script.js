@@ -59,6 +59,36 @@ const labelFunc = (arr) => {
   return specificElm.join("");
 };
 
+// priority bg
+const priorityFunc = (priority) => {
+  if (priority === "high") {
+    return "text-[#EF4444] bg-red-100";
+  } else if (priority === "medium") {
+    return "text-[#F59E0B] bg-yellow-100";
+  } else if (priority === "low") {
+    return "text-[#9CA3AF] bg-gray-100";
+  }
+};
+
+// border top condition
+const borderTopCon = (bor) => {
+  if (bor === "open") {
+    return "border-t-4 border-t-green-500";
+  } else if (bor === "closed") {
+    return "border-t-4 border-t-purple-500";
+  }
+};
+
+// get date
+
+const dateUpdate = (date) => {
+  const createDate = new Date(date);
+  const day = createDate.getDate();
+  const month = createDate.getMonth() + 1;
+  const year = createDate.getFullYear();
+  return `${day} / ${month} / ${year}`;
+};
+
 //btns  dynamic loaded here
 const loadBtn = async () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
@@ -76,26 +106,6 @@ const displayBtn = (cards) => {
       card.status === "closed"
         ? "./assets/closed- Status.png"
         : "./assets/open-Status.png";
-
-    // priority bg
-    const priorityFunc = (priority) => {
-      if (priority === "high") {
-        return "text-[#EF4444] bg-red-100";
-      } else if (priority === "medium") {
-        return "text-[#F59E0B] bg-yellow-100";
-      } else if (priority === "low") {
-        return "text-[#9CA3AF] bg-gray-100";
-      }
-    };
-
-    // border top condition
-    const borderTopCon = (bor) => {
-      if (bor === "open") {
-        return "border-t-4 border-t-green-500";
-      } else if (bor === "closed") {
-        return "border-t-4 border-t-purple-500";
-      }
-    };
 
     const div = document.createElement("div");
     div.className = `space-y-5 p-4 shadow-md rounded-lg ${borderTopCon(card.status)}`;
@@ -120,8 +130,8 @@ const displayBtn = (cards) => {
           </div>
         </div>
         <div>
-          <p class="text-gray-400">creator name</p>
-          <p class="text-gray-400">create date</p>
+          <p class="text-gray-500 text-sm">#${card.id} ${card.author}</p>
+          <p class="text-gray-500 text-sm">${dateUpdate(card.createdAt)}</p>
         </div>
      
     `;
