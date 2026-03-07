@@ -32,10 +32,30 @@ singInBtn.addEventListener("click", () => {
 
 // labels arr output
 const labelFunc = (arr) => {
-  const specificElm = arr.map(
-    (elm) =>
-      `<span class="px-3 py-1 rounded-3xl bg-gray-100">${elm.toUpperCase()}</span>`,
-  );
+  const specificElm = arr.map((elm) => {
+    let color = "bg-gray-100 text-gray-500";
+    let icon = `<i class="fa-solid fa-tag"></i>`;
+
+    //
+    if (elm === "bug") {
+      color = "text-[#EF4444] bg-red-100";
+      icon = `<i class="fa-solid fa-bug"></i>`;
+    } else if (elm === "help wanted") {
+      color = "text-[#F59E0B] bg-yellow-100";
+      icon = `<i class="fa-regular fa-life-ring"></i>`;
+    } else if (elm === "good first issue") {
+      color = "bg-orange-100 text-orange-500";
+      icon = `<i class="fa-solid fa-file-circle-exclamation"></i>`;
+    } else if (elm === "documentation") {
+      color = "bg-purple-100 text-purple-500";
+      icon = `<i class="fa-regular fa-file-lines"></i>`;
+    } else if (elm === "enhancement") {
+      color = "bg-blue-100 text-blue-500";
+      icon = `<i class="fa-solid fa-arrow-up-right-dots"></i>`;
+    }
+    ///
+    return `<span class="px-3 py-1 rounded-3xl shadow bg-gray-100 ${color}">${icon} ${elm.toUpperCase()}</span>`;
+  });
   return specificElm.join("");
 };
 
@@ -95,7 +115,7 @@ const displayBtn = (cards) => {
             <h2 class="text-xl font-bold">${card.title}</h2>
             <p class="text-gray-500 line-clamp-2">${card.description}</p>
           </div>
-          <div class="flex text-[10px] items-center gap-2">
+          <div class="flex text-[12px] flex-wrap items-center gap-2">
            ${labelFunc(card.labels)}
           </div>
         </div>
