@@ -4,11 +4,15 @@ const mainPage = document.getElementById("main-page");
 const userInput = document.getElementById("user-input");
 const passwordInput = document.getElementById("password-input");
 const singInBtn = document.getElementById("singin-btn");
-// main page element
 const btnsContainer = document.getElementById("btns-container");
-const allBtn = document.getElementById("all-btn");
 const allCardsContainer = document.getElementById("all-cards-show");
 const spinnerLoad = document.getElementById("spinner-load");
+const allBtn = document.getElementById("all-btn");
+const openBtn = document.getElementById("open-btn");
+const closedBtn = document.getElementById("closed-btn");
+
+// sob cards er data thakbe
+let allCards = [];
 
 // login btn here
 singInBtn.addEventListener("click", () => {
@@ -26,10 +30,22 @@ singInBtn.addEventListener("click", () => {
   }
 });
 
-// all btn container dynamic loaded here
-// allBtn.addEventListener("click", () => {
-//   loadBtn();
-// });
+// all btn dynamic loaded here
+allBtn.addEventListener("click", () => {
+  displayCard(allCards);
+});
+
+//open btn dynamic loaded here
+openBtn.addEventListener("click", () => {
+  const openCard = allCards.filter((card) => card.status === "open");
+  displayCard(openCard);
+});
+
+//closed btn dynamic loaded here
+closedBtn.addEventListener("click", () => {
+  const closedCard = allCards.filter((card) => card.status === "closed");
+  displayCard(closedCard);
+});
 
 //spinner loading
 const showLoadingSpinner = () => {
@@ -99,17 +115,18 @@ const dateUpdate = (date) => {
   return `${day} / ${month} / ${year}`;
 };
 
-//btns  dynamic loaded here
-const loadBtn = async () => {
+//cards  dynamic loaded here
+const loadCard = async () => {
   showLoadingSpinner();
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   const res = await fetch(url);
   const data = await res.json();
-  displayBtn(data.data);
+  allCards = data.data;
+  displayCard(data.data);
   removeLoadingSpinner();
 };
-//display
-const displayBtn = (cards) => {
+//display cards
+const displayCard = (cards) => {
   allCardsContainer.innerHTML = "";
   cards.forEach((card) => {
     // statusIcon
@@ -141,7 +158,7 @@ const displayBtn = (cards) => {
           </div>
         </div>
         <div>
-          <p class="text-gray-500 text-sm">#${card.id} ${card.author}</p>
+          <p class="text-gray-500 text-sm">#${card.id} by ${card.author}</p>
           <p class="text-gray-500 text-sm">${dateUpdate(card.createdAt)}</p>
         </div>
      
@@ -151,5 +168,8 @@ const displayBtn = (cards) => {
   });
 };
 
+// specific btn click show cards
+const specificBtnClick = (cards) => {};
+
 // declare fn
-loadBtn();
+loadCard();
