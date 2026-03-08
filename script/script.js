@@ -202,7 +202,7 @@ const displayModal = (card) => {
   modalContainer.innerHTML = `
  
                   <h2 class="text-xl font-bold">${card.title}</h2>
-                  <div class="flex items-center gap-2">
+                  <div class="flex flex-wrap items-center gap-2">
                     <span  class="badge ${card.status === "open" ? "badge-success" : "badge-warning"} rounded-2xl">${card.status.toUpperCase()}</span>
                     <p class="text-gray-500 flex items-center gap-2">
                       <img src="./assets/Ellipse 5.png" alt="" />Opened by ${card.assignee || "Unassigned"}
