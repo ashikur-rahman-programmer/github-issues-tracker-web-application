@@ -23,6 +23,8 @@ singInBtn.addEventListener("click", () => {
 
   if (!isLogIn) {
     alert("Your username or password is wrong! please try again.");
+    userInput.value = "";
+    passwordInput.value = "";
     return;
   } else {
     mainPage.classList.remove("hidden");
